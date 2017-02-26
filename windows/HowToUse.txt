@@ -1,0 +1,6 @@
+1.Open cmd in the folder of the Kodi Installer 
+2.Hold down shift and right click the mouse 
+3.Click open command window here
+4.Type Install_Kodi 
+5.You can find the device IP address in about device 
+6.Type device IP address and press enter
