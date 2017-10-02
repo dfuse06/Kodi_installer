@@ -17,7 +17,7 @@ adb connect $text
 sleep 5
 echo "Now installing Kodi"
 cd ~/scripts/Kodi_Install/
-adb install org.xbmc.kodi_16.1.com.apk
+adb install kodi-17.4-Krypton-armeabi-v7a.apk
 adb push plugin.video.DfuseBuild.zip /sdcard/
 adb disconnect $text
 echo "Done. Enjoy";
