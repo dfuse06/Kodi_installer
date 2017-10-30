@@ -1,0 +1,82 @@
+#!/usr/bin/python
+
+import Tkinter
+import os
+import tkSimpleDialog
+
+top = Tkinter.Tk()
+top.geometry("500x620")
+top.title("Kodi Installer")
+top.configure(background='navy')
+
+text1 = Tkinter.Text(top, height=9, width=17)
+text1.config(bd=2)
+text1.insert(Tkinter.END, '\n')
+photo = Tkinter.PhotoImage(file="icon120x120.png")
+text1.image_create(Tkinter.END, image=photo)
+
+text1.pack(padx=2, pady=10, side=Tkinter.TOP)
+
+
+def adbCallBack():
+    address = tkSimpleDialog.askstring("IP Address", "What is the device's ip address?")
+    os.system("adb connect %s" % (address))
+
+
+Dustin = Tkinter.Label(text="Connect Device", bg='navy', fg='white', ).pack(padx=2, pady=10)
+B = Tkinter.Button(top, text="Click ME", command=adbCallBack)
+B.config(bg='navy', fg='white', bd=1)
+B.config(font=('helvetica', 10, 'underline italic'))
+B.pack(padx=2, pady=5, side=Tkinter.TOP)
+
+
+def KodiCallBack():
+    os.system("adb install kodi-17.4-Krypton-armeabi-v7a.apk")
+
+
+Tkinter.Label(text="Install Kodi", bg='navy', fg='white').pack(padx=2, pady=10)
+C = Tkinter.Button(top, text="Click Me", command=KodiCallBack)
+C.config(bg='navy', fg='white', bd=1)
+C.config(font=('helvetica', 10, 'underline italic'))
+C.pack(padx=2, pady=5, side=Tkinter.TOP)
+
+
+def WizardCallBack():
+    os.system("adb push repository.aresproject-0.1.0.zip /sdcard/")
+
+
+Tkinter.Label(text="Push Ares Wizard to SD-card", bg='navy', fg='white').pack(padx=2, pady=10)
+D = Tkinter.Button(top, text="Click ME", command=WizardCallBack)
+D.config(bg='navy', fg='white', bd=1)
+D.config(font=('helvetica', 10, 'underline italic'))
+D.pack(padx=2, pady=5, side=Tkinter.TOP)
+
+
+def DisconnectCallBack():
+    address = tkSimpleDialog.askstring("IP Address", "What is the devices ip address?")
+    os.system("adb disconnect %s" % (address))
+
+
+Tkinter.Label(text="Disconnect Device", bg='navy', fg='white').pack(padx=2, pady=10)
+E = Tkinter.Button(top, text="Click Me", command=DisconnectCallBack)
+E.config(bg='navy', fg='white', bd=1)
+E.config(font=('helvetica', 10, 'underline italic'))
+E.pack(padx=2, pady=5, side=Tkinter.TOP)
+
+
+def endProgam():
+    top.destroy()
+
+
+Tkinter.Label(text="Exit", bg='navy', fg='white').pack(padx=2, pady=10)
+F = Tkinter.Button(top, text="Click ME", command=endProgam)
+F.config(bg='navy', fg='white', bd=1)
+F.config(font=('helvetica', 10, 'underline italic'))
+F.pack(padx=2, pady=5, side=Tkinter.TOP)
+
+T = Tkinter.Text(top, height=2, width=29)
+T.config(bg='navy', fg='white', bd=1)
+T.pack(padx=20, pady=15)
+T.insert(Tkinter.END, "Kodi Installer by D-FUSE\nFind me at dfuse06@gmail.com\n")
+
+top.mainloop()
